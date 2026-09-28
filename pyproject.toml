@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "himkavach"
+version = "0.1.0"
+description = "HimKavach: Intelligent Energy Management & Flight-Planner for Polar Research Stations"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "HimKavach Principal Engineering Team" }
+]
+dependencies = [
+    "pydantic>=2.7.0",
+    "pyyaml>=6.0.1",
+    "numpy>=1.26.0",
+    "pandas>=2.2.0",
+    "scipy>=1.12.0",
+    "scikit-learn>=1.4.0",
+    "pyomo>=6.7.0",
+    "highspy>=1.7.0",
+    "pyarrow>=15.0.0",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "sqlalchemy>=2.0.28",
+    "alembic>=1.13.1",
+    "xgboost>=2.0.0",
+    "pvlib>=0.10.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.1.0",
+    "hypothesis>=6.100.0",
+    "pytest-benchmark>=4.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.9.0",
+    "types-PyYAML>=6.0.12",
+    "httpx>=0.27.0"
+]
+
+[tool.setuptools.packages.find]
+where = [
+    "packages/core/src",
+    "packages/twin/src",
+    "packages/forecast/src",
+    "packages/optimizer/src",
+    "packages/control/src",
+    "packages/health/src",
+    "packages/evaluation/src"
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+pythonpath = [
+    "packages/core/src",
+    "packages/twin/src",
+    "packages/forecast/src",
+    "packages/optimizer/src",
+    "packages/control/src",
+    "packages/health/src",
+    "packages/evaluation/src"
+]
+addopts = "-v --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+warn_unused_configs = true

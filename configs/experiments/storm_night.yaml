@@ -1,0 +1,25 @@
+# ==============================================================================
+# STORM NIGHT BENCHMARK EXPERIMENT CONFIGURATION
+# 72-hour episode with blizzard onset at ~hour 30 and generator trip at hour 40
+# ==============================================================================
+
+experiment_id: "EXP_STORM_NIGHT_72H"
+name: "Storm Night Benchmark Episode"
+description: "72h severe blizzard episode comparing B1 through B4 against HimKavach"
+station_config_path: "configs/stations/reference.yaml"
+seed: 42
+duration_hours: 72.0
+weather_regime: "STORM_NIGHT_CYCLONE"
+controllers_to_run:
+  - "B1_NAIVE"
+  - "B2_TUNED_RULES"
+  - "B3_DETERMINISTIC_MPC"
+  - "B4_ORACLE"
+  - "HIMKAVACH"
+injected_faults:
+  - fault_type: "GENSET_TRIP"
+    target_id: "GEN_1"
+    start_hour: 40.0
+    duration_hours: 12.0
+    magnitude: 1.0
+monte_carlo_samples: 1

@@ -1,0 +1,161 @@
+# ==============================================================================
+# HIMKAVACH REFERENCE POLAR STATION CONFIGURATION
+# Modelled after Indian Antarctic Station (Maitri / Bharati analogue)
+# All parameters marked # PLACEHOLDER are configurable approximations for NCPOR/MoES
+# ==============================================================================
+
+station_id: "REFERENCE_ANTARCTIC_STATION" # PLACEHOLDER
+name: "Maitri/Bharati Analogue Research Station" # PLACEHOLDER
+latitude: -70.7667 # Maitri ~70.8°S # PLACEHOLDER
+longitude: 11.7333 # Maitri ~11.7°E # PLACEHOLDER
+elevation_m: 117.0 # PLACEHOLDER
+
+# ------------------------------------------------------------------------------
+# DIESEL GENERATION (3 x 150 kW)
+# ------------------------------------------------------------------------------
+gensets:
+  - id: "GEN_1"
+    rated_power_kw: 150.0 # PLACEHOLDER
+    min_load_ratio: 0.30 # 30% min stable load = 45 kW # PLACEHOLDER
+    fuel_intercept_l_per_h_kw: 0.08 # 'a' = 12.0 L/h at zero-load idle # PLACEHOLDER
+    fuel_slope_l_per_h_kw: 0.25 # 'b' = 0.25 L/kWh incremental # PLACEHOLDER
+    min_uptime_min: 60 # PLACEHOLDER
+    min_downtime_min: 30 # PLACEHOLDER
+    ramp_rate_kw_per_min: 30.0 # PLACEHOLDER
+    start_cost_usd: 15.0 # PLACEHOLDER
+    cold_start_delay_min: 15 # PLACEHOLDER
+    heat_recovery_efficiency: 0.35 # 35% thermal recovery to hydronic heating # PLACEHOLDER
+
+  - id: "GEN_2"
+    rated_power_kw: 150.0 # PLACEHOLDER
+    min_load_ratio: 0.30 # PLACEHOLDER
+    fuel_intercept_l_per_h_kw: 0.08 # PLACEHOLDER
+    fuel_slope_l_per_h_kw: 0.25 # PLACEHOLDER
+    min_uptime_min: 60 # PLACEHOLDER
+    min_downtime_min: 30 # PLACEHOLDER
+    ramp_rate_kw_per_min: 30.0 # PLACEHOLDER
+    start_cost_usd: 15.0 # PLACEHOLDER
+    cold_start_delay_min: 15 # PLACEHOLDER
+    heat_recovery_efficiency: 0.35 # PLACEHOLDER
+
+  - id: "GEN_3"
+    rated_power_kw: 150.0 # PLACEHOLDER
+    min_load_ratio: 0.30 # PLACEHOLDER
+    fuel_intercept_l_per_h_kw: 0.08 # PLACEHOLDER
+    fuel_slope_l_per_h_kw: 0.25 # PLACEHOLDER
+    min_uptime_min: 60 # PLACEHOLDER
+    min_downtime_min: 30 # PLACEHOLDER
+    ramp_rate_kw_per_min: 30.0 # PLACEHOLDER
+    start_cost_usd: 15.0 # PLACEHOLDER
+    cold_start_delay_min: 15 # PLACEHOLDER
+    heat_recovery_efficiency: 0.35 # PLACEHOLDER
+
+# ------------------------------------------------------------------------------
+# BATTERY ENERGY STORAGE (600 kWh / 300 kW Li-ion BESS)
+# ------------------------------------------------------------------------------
+battery:
+  id: "BESS_POLAR_MAIN" # PLACEHOLDER
+  capacity_kwh: 600.0 # 600 kWh usable capacity # PLACEHOLDER
+  max_charge_kw: 300.0 # 300 kW charge rate # PLACEHOLDER
+  max_discharge_kw: 300.0 # 300 kW discharge rate # PLACEHOLDER
+  charge_efficiency: 0.96 # sqrt(0.92) ~ 0.959 # PLACEHOLDER
+  discharge_efficiency: 0.96 # ~92% round trip # PLACEHOLDER
+  min_soc: 0.10 # 10% lower floor # PLACEHOLDER
+  max_soc: 1.00 # 100% upper ceiling # PLACEHOLDER
+  min_temp_c_for_charging: 0.0 # Li-ion cold-charging threshold # PLACEHOLDER
+  heater_power_kw: 5.0 # Battery enclosure thermal management heater # PLACEHOLDER
+  degradation_cost_per_kwh: 0.05 # Cycle wear penalty # PLACEHOLDER
+
+# ------------------------------------------------------------------------------
+# WIND GENERATION (2 x 100 kW cold-climate turbines)
+# ------------------------------------------------------------------------------
+wind_turbines:
+  - id: "WIND_TURBINE_1" # PLACEHOLDER
+    rated_power_kw: 100.0 # PLACEHOLDER
+    cut_in_speed_m_s: 3.0 # PLACEHOLDER
+    rated_speed_m_s: 12.0 # PLACEHOLDER
+    cut_out_speed_m_s: 25.0 # Storm cut-out threshold # PLACEHOLDER
+    restart_speed_m_s: 20.0 # Restart hysteresis threshold # PLACEHOLDER
+    restart_dwell_min: 10 # 10 min calm dwell before restart # PLACEHOLDER
+    hub_height_m: 25.0 # PLACEHOLDER
+    icing_derate_factor: 0.85 # PLACEHOLDER
+
+  - id: "WIND_TURBINE_2" # PLACEHOLDER
+    rated_power_kw: 100.0 # PLACEHOLDER
+    cut_in_speed_m_s: 3.0 # PLACEHOLDER
+    rated_speed_m_s: 12.0 # PLACEHOLDER
+    cut_out_speed_m_s: 25.0 # PLACEHOLDER
+    restart_speed_m_s: 20.0 # PLACEHOLDER
+    restart_dwell_min: 10 # PLACEHOLDER
+    hub_height_m: 25.0 # PLACEHOLDER
+    icing_derate_factor: 0.85 # PLACEHOLDER
+
+# ------------------------------------------------------------------------------
+# SOLAR PHOTOVOLTAIC (80 kWp High-Tilt Bifacial/Cold PV)
+# ------------------------------------------------------------------------------
+pv_arrays:
+  - id: "PV_MAIN_ARRAY" # PLACEHOLDER
+    peak_power_kw: 80.0 # 80 kWp array # PLACEHOLDER
+    tilt_deg: 65.0 # High tilt for low polar sun elevation and snow shedding # PLACEHOLDER
+    azimuth_deg: 0.0 # Equator-facing (North in Antarctica) # PLACEHOLDER
+    temp_coeff_per_c: -0.0038 # -0.38%/°C cold efficiency gain # PLACEHOLDER
+    snow_shed_temp_c: -2.0 # PLACEHOLDER
+
+# ------------------------------------------------------------------------------
+# THERMAL BUILDING AND SNOW-MELT STORAGE
+# ------------------------------------------------------------------------------
+thermal:
+  building_heat_capacity_kwh_per_c: 180.0 # Lumped station thermal mass # PLACEHOLDER
+  building_heat_loss_kw_per_c: 4.0 # Station heat loss coefficient # PLACEHOLDER
+  min_temp_c: 16.0 # Min comfort limit during conservation # PLACEHOLDER
+  max_temp_c: 24.0 # Max pre-heat ceiling before storm # PLACEHOLDER
+  setpoint_temp_c: 20.0 # Nominal indoor setpoint # PLACEHOLDER
+  aux_heater_max_kw: 100.0 # Electric backup boiler # PLACEHOLDER
+  water_tank_capacity_l: 12000.0 # Potable water reservoir # PLACEHOLDER
+  snow_melter_power_kw: 30.0 # Batch snow-melter # PLACEHOLDER
+
+# ------------------------------------------------------------------------------
+# LOAD TIERS (0 through 3)
+# ------------------------------------------------------------------------------
+load_tiers:
+  - tier: 0
+    name: "Life Support & Core Station Survival"
+    base_kw: 40.0 # Frost protection, comms, emergency lighting # PLACEHOLDER
+    peak_kw: 45.0 # PLACEHOLDER
+    ride_through_min: 0 # Never shed while physically serviceable
+    max_daily_shed_hours: 0.0
+    voll_usd_per_kwh: 10000.0 # Extreme penalty # PLACEHOLDER
+
+  - tier: 1
+    name: "Protected Science & Deep Freezers"
+    base_kw: 15.0 # Freezers, seismic/GPS/meteorological sensors # PLACEHOLDER
+    peak_kw: 20.0 # PLACEHOLDER
+    ride_through_min: 30 # 30 min thermal ride-through # PLACEHOLDER
+    max_daily_shed_hours: 1.0 # Max 1h # PLACEHOLDER
+    voll_usd_per_kwh: 500.0 # Heavy science interruption penalty # PLACEHOLDER
+
+  - tier: 2
+    name: "Station Comfort & Daily Operations"
+    base_kw: 45.0 # Galley, workshop, general ventilation # PLACEHOLDER
+    peak_kw: 110.0 # Meal prep, lab heating # PLACEHOLDER
+    ride_through_min: 120 # 2 hours # PLACEHOLDER
+    max_daily_shed_hours: 8.0 # PLACEHOLDER
+    voll_usd_per_kwh: 20.0 # PLACEHOLDER
+
+  - tier: 3
+    name: "Deferrable & Shiftable Work"
+    base_kw: 20.0 # Bulk water melting, vehicle battery charging # PLACEHOLDER
+    peak_kw: 75.0 # Peak snow-melter burst # PLACEHOLDER
+    ride_through_min: 720 # 12 hours # PLACEHOLDER
+    max_daily_shed_hours: 18.0 # PLACEHOLDER
+    voll_usd_per_kwh: 3.0 # Minor penalty # PLACEHOLDER
+
+# ------------------------------------------------------------------------------
+# BULK FUEL INVENTORY & ANNUAL LOGISTICS
+# ------------------------------------------------------------------------------
+fuel:
+  tank_capacity_l: 180000.0 # 180,000 L bulk polar fuel tank # PLACEHOLDER
+  initial_inventory_l: 150000.0 # Starting stock # PLACEHOLDER
+  days_to_resupply: 300 # Resupply cycle # PLACEHOLDER
+  contingency_days: 45 # 45-day emergency fuel reserve # PLACEHOLDER
+  fuel_unit_cost_usd_per_l: 2.50 # Delivered diesel cost ($/L) # PLACEHOLDER
